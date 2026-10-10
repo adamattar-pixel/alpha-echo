@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analyze Macro Context"
+  short_description: "Build a cutoff-safe macro context for held equities"
+  default_prompt: "Use $analyze-macro-context to produce the shared macro context for the frozen equity portfolio."

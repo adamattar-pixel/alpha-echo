@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analyze Equity Market Context"
+  short_description: "Analyze market and industry context for held equities"
+  default_prompt: "Use $analyze-equity-market-context to analyze the relevant equity market and industry context."

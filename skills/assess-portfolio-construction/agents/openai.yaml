@@ -1,0 +1,4 @@
+interface:
+  display_name: "Assess Portfolio Construction"
+  short_description: "Assess sizing, concentration, and shared portfolio risks"
+  default_prompt: "Use $assess-portfolio-construction to assess portfolio sizing, concentration, and shared risks."

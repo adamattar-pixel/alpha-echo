@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Alpha Echo Research Output V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["as_of", "skill_name", "data_gaps", "evidence", "events", "findings", "narratives", "transmission_paths"],
+  "properties": {
+    "as_of": { "type": "string" },
+    "skill_name": { "type": "string", "minLength": 1 },
+    "data_gaps": { "type": "array", "items": { "type": "string" } },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "source_type", "coverage_scope", "related_instrument_id", "relationship_basis", "relationship_explanation", "title", "url", "publisher", "published_at", "observed_at", "excerpt", "source_snapshot_id", "frozen_object_type", "frozen_object_id"],
+        "properties": {
+          "key": { "type": "string", "minLength": 1 },
+          "source_type": { "type": "string", "minLength": 1 },
+          "coverage_scope": { "type": "string", "enum": ["position", "company", "product", "industry", "market", "macro"] },
+          "related_instrument_id": { "type": ["string", "null"] },
+          "relationship_basis": { "type": ["string", "null"], "enum": ["source_names_instrument", "direct_transmission", null] },
+          "relationship_explanation": { "type": ["string", "null"] },
+          "title": { "type": "string", "minLength": 1 },
+          "url": { "type": ["string", "null"] },
+          "publisher": { "type": ["string", "null"] },
+          "published_at": { "type": ["string", "null"] },
+          "observed_at": { "type": "string" },
+          "excerpt": { "type": ["string", "null"] },
+          "source_snapshot_id": { "type": ["string", "null"] },
+          "frozen_object_type": { "type": ["string", "null"] },
+          "frozen_object_id": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["event_key", "market", "event_type", "is_scheduled", "occurred_at", "headline", "facts", "evidence_keys"],
+        "properties": {
+          "event_key": { "type": "string", "minLength": 1 },
+          "market": { "type": "string", "minLength": 1 },
+          "event_type": { "type": "string", "minLength": 1 },
+          "is_scheduled": { "type": "boolean" },
+          "occurred_at": { "type": "string" },
+          "headline": { "type": "string", "minLength": 1 },
+          "facts": { "type": "array", "items": { "type": "string" } },
+          "evidence_keys": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["finding_type", "market", "window_start", "window_end", "affected_object_type", "affected_object_id", "fact_summary", "inference", "impact_direction", "impact_strength", "time_horizon", "confidence", "contrary_evidence", "confirmation_conditions", "invalidation_conditions", "conditional_action", "data_gaps", "evidence_keys", "related_event_keys", "related_narrative_keys", "related_transmission_path_keys", "analysis"],
+        "properties": {
+          "finding_type": { "type": "string", "minLength": 1 },
+          "market": { "type": "string", "minLength": 1 },
+          "window_start": { "type": "string" },
+          "window_end": { "type": "string" },
+          "affected_object_type": { "type": ["string", "null"] },
+          "affected_object_id": { "type": ["string", "null"] },
+          "fact_summary": { "type": "string", "minLength": 1 },
+          "inference": { "type": ["string", "null"] },
+          "impact_direction": { "type": ["string", "null"], "enum": ["strengthened", "weakened", "invalidated", "unchanged", null] },
+          "impact_strength": { "type": ["integer", "null"], "minimum": 0, "maximum": 5 },
+          "time_horizon": { "type": ["string", "null"] },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "contrary_evidence": { "type": "array", "items": { "type": "string" } },
+          "confirmation_conditions": { "type": "array", "items": { "type": "string" } },
+          "invalidation_conditions": { "type": "array", "items": { "type": "string" } },
+          "conditional_action": { "type": ["string", "null"] },
+          "data_gaps": { "type": "array", "items": { "type": "string" } },
+          "evidence_keys": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "related_event_keys": { "type": "array", "items": { "type": "string" } },
+          "related_narrative_keys": { "type": "array", "items": { "type": "string" } },
+          "related_transmission_path_keys": { "type": "array", "items": { "type": "string" } },
+          "analysis": {
+            "type": ["object", "null"],
+            "additionalProperties": false,
+            "required": ["intent_assessment", "intent_draft", "macro_context", "industry_context", "company_context", "market_pricing", "future_expectation", "expectation_gap", "upside_catalysts", "downside_pressures", "core_risks"],
+            "properties": {
+              "intent_assessment": { "type": "string", "enum": ["matched", "missing"] },
+              "intent_draft": {
+                "type": ["object", "null"],
+                "additionalProperties": false,
+                "required": ["thesis", "time_horizon", "catalysts", "invalidation_conditions"],
+                "properties": {
+                  "thesis": { "type": "string", "minLength": 1 },
+                  "time_horizon": { "type": "string", "enum": ["short", "swing", "medium", "long"] },
+                  "catalysts": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+                  "invalidation_conditions": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+                }
+              },
+              "macro_context": { "type": "string", "minLength": 1 },
+              "industry_context": { "type": "string", "minLength": 1 },
+              "company_context": { "type": "string", "minLength": 1 },
+              "market_pricing": { "type": "string", "minLength": 1 },
+              "future_expectation": { "type": "string", "minLength": 1 },
+              "expectation_gap": { "type": "string", "minLength": 1 },
+              "upside_catalysts": { "type": "array", "items": { "type": "string" } },
+              "downside_pressures": { "type": "array", "items": { "type": "string" } },
+              "core_risks": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "narratives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["narrative_key", "market", "name", "narrative_type", "stage", "summary", "confidence", "capital_flow_inference", "evidence_keys", "instrument_ids"],
+        "properties": {
+          "narrative_key": { "type": "string", "minLength": 1 },
+          "market": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "narrative_type": { "type": "string", "enum": ["explicit", "latent"] },
+          "stage": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "capital_flow_inference": { "type": ["string", "null"] },
+          "evidence_keys": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "instrument_ids": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "transmission_paths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path_key", "source_driver", "steps", "target_market", "target_instrument_id", "direction", "confidence", "evidence_keys"],
+        "properties": {
+          "path_key": { "type": "string", "minLength": 1 },
+          "source_driver": { "type": "string", "minLength": 1 },
+          "steps": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "target_market": { "type": "string", "minLength": 1 },
+          "target_instrument_id": { "type": ["string", "null"] },
+          "direction": { "type": "string", "minLength": 1 },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "evidence_keys": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Diagnose Equity Positions"
+  short_description: "Diagnose each held equity against its trade intent"
+  default_prompt: "Use $diagnose-equity-positions to diagnose every held equity against its frozen trade intent."

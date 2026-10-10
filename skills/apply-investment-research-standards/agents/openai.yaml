@@ -1,0 +1,4 @@
+interface:
+  display_name: "投资研究标准"
+  short_description: "Apply cutoff, evidence, provenance, and uncertainty rules"
+  default_prompt: "Use -investment-research-standards to validate this research run."

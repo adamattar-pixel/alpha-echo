@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Alpha Echo Briefing Output V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["as_of", "title", "executive_summary", "data_gaps", "items"],
+  "properties": {
+    "as_of": { "type": "string" },
+    "title": { "type": "string", "minLength": 1 },
+    "executive_summary": { "type": "string", "minLength": 1 },
+    "data_gaps": { "type": "array", "items": { "type": "string" } },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["section", "title", "body", "severity", "intent_status", "actionability", "source_finding_ids"],
+        "properties": {
+          "section": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "body": { "type": "string", "minLength": 1 },
+          "severity": { "type": ["string", "null"] },
+          "intent_status": { "type": ["string", "null"], "enum": ["active", "draft_unconfirmed", null] },
+          "actionability": { "type": ["string", "null"], "enum": ["conditional", "non_actionable", null] },
+          "source_finding_ids": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

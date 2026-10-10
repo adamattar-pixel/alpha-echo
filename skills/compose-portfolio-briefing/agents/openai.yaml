@@ -1,0 +1,4 @@
+interface:
+  display_name: "Compose Portfolio Briefing"
+  short_description: "Compose an immutable portfolio report"
+  default_prompt: "Use $compose-portfolio-briefing to compose the requested portfolio briefing from validated findings."
